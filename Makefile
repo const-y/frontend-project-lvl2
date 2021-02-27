@@ -5,3 +5,6 @@ link:
 	sudo npm link
 
 install: install-deps link
+
+lint:
+	npx eslint .
