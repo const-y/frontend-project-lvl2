@@ -1,8 +1,9 @@
 {
   "name": "@hexlet/code",
   "version": "0.1.0",
-  "description": "Difference calculator",
+  "description": "Compares two configuration files and shows a difference.",
   "main": "index.js",
+  "type": "module",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
