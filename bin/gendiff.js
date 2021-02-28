@@ -7,9 +7,21 @@ import { dirname, join } from 'path';
 
 const filename = fileURLToPath(import.meta.url);
 
-const packageData = readFileSync(join(dirname(filename), '..', '/package.json'));
+const packageData = readFileSync(
+  join(dirname(filename), '..', '/package.json'),
+);
 const { version, description } = JSON.parse(packageData);
 
-program.version(version).description(description);
+program
+  .version(version)
+  .arguments('<filepath1> <filepath2>')
+  .description(description)
+  .option('-f, --format [type]', 'output format');
 
 program.parse();
+
+const options = program.opts();
+
+if (options.format) {
+  console.log(`- ${options.format}`);
+}
