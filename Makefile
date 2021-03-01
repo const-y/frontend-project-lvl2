@@ -8,3 +8,6 @@ install: install-deps link
 
 lint:
 	npx eslint .
+
+test:
+	npm test
