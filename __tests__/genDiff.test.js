@@ -14,14 +14,12 @@ it('should compare correctly', () => {
     host: 'hexlet.io',
   };
   const result = genDiff(value1, value2);
-  expect(result).toBe(`
-  {
-    - follow: false
-      host: hexlet.io
-    - proxy: 123.234.53.22
-    - timeout: 50
-    + timeout: 20
-    + verbose: true
-  }
-  `);
+  expect(result).toBe(`{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}`);
 });
