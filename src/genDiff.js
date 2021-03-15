@@ -1,40 +1,25 @@
-const compareByKey = (value1, value2, key) => {
-  if (value1 === value2) {
-    // not changed
-    return [[' ', key, value1]];
-  }
-  if (value1 === undefined) {
-    // value was added
-    return [['+', key, value2]];
-  }
-  if (value2 === undefined) {
-    // value was removed
-    return [['-', key, value1]];
-  }
-  // both values is set - changed
-  return [
-    ['-', key, value1],
-    ['+', key, value2],
-  ];
-};
+import _ from 'lodash';
+
+const operations = ['-', '+', ' '];
 
 const formatDiffs = (diffs) => {
-  let result = '{\n';
-  diffs.forEach((diff) => {
-    const [operation, key, value] = diff;
-    result += `  ${operation} ${key}: ${value}\n`;
-  });
-  result += '}';
-  return result;
+  const resultBody = diffs.reduce((acc, item) => {
+    const { operation, key, value } = item;
+    return `${acc}  ${operations[operation]} ${key}: ${value}\n`;
+  }, '');
+  return `{\n${resultBody}}`;
 };
 
 export default (value1, value2) => {
-  const diffs = [];
-  const sortedKeys = [...new Set([...Object.keys(value1), ...Object.keys(value2)])].sort();
+  const notChangedKeys = Object.keys(value1).filter((key) => value1[key] === value2[key]);
+  const removedKeys = Object.keys(value1).filter((key) => !notChangedKeys.includes(key));
+  const addedKeys = Object.keys(value2).filter((key) => !notChangedKeys.includes(key));
+  const diff = [
+    ...removedKeys.map((key) => ({ operation: 0, key, value: value1[key] })),
+    ...addedKeys.map((key) => ({ operation: 1, key, value: value2[key] })),
+    ...notChangedKeys.map((key) => ({ operation: 2, key, value: value1[key] })),
+  ];
+  const sortedDiff = _.sortBy(diff, ['key', 'operation']);
 
-  sortedKeys.forEach((key) => {
-    diffs.push(...compareByKey(value1[key], value2[key], key));
-  });
-
-  return formatDiffs(diffs);
+  return formatDiffs(sortedDiff);
 };
