@@ -3,11 +3,8 @@ import _ from 'lodash';
 const operations = ['-', '+', ' '];
 
 const formatDiffs = (diffs) => {
-  const resultBody = diffs.reduce((acc, item) => {
-    const { operation, key, value } = item;
-    return `${acc}  ${operations[operation]} ${key}: ${value}\n`;
-  }, '');
-  return `{\n${resultBody}}`;
+  const resultBody = diffs.reduce((acc, { operation, key, value }) => `${acc}  ${operations[operation]} ${key}: ${value}\n`, '{\n');
+  return `${resultBody}}`;
 };
 
 export default (value1, value2) => {
