@@ -1,33 +1,28 @@
-const prefixes = {
-  added: '+',
-  removed: '-',
-  nothing: ' ',
-};
-
 const compareByKey = (value1, value2, key) => {
   if (value1 === value2) {
     // not changed
-    return [`${prefixes.nothing} ${key}: ${value1}`];
+    return [[' ', key, value1]];
   }
   if (value1 === undefined) {
     // value was added
-    return [`${prefixes.added} ${key}: ${value2}`];
+    return [['+', key, value2]];
   }
   if (value2 === undefined) {
     // value was removed
-    return [`${prefixes.removed} ${key}: ${value1}`];
+    return [['-', key, value1]];
   }
   // both values is set - changed
   return [
-    `${prefixes.removed} ${key}: ${value1}`,
-    `${prefixes.added} ${key}: ${value2}`,
+    ['-', key, value1],
+    ['+', key, value2],
   ];
 };
 
 const formatDiffs = (diffs) => {
   let result = '{\n';
   diffs.forEach((diff) => {
-    result += `  ${diff}\n`;
+    const [operation, key, value] = diff;
+    result += `  ${operation} ${key}: ${value}\n`;
   });
   result += '}';
   return result;
