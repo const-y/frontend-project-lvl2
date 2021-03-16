@@ -1,5 +1,5 @@
 import { it, expect } from '@jest/globals';
-import genDiff from '../src/genDiff';
+import { genObjectsDiff } from '../src/genDiff';
 
 it('should compare correctly', () => {
   const value1 = {
@@ -13,7 +13,7 @@ it('should compare correctly', () => {
     verbose: true,
     host: 'hexlet.io',
   };
-  const result = genDiff(value1, value2);
+  const result = genObjectsDiff(value1, value2);
   expect(result).toBe(`{
   - follow: false
     host: hexlet.io

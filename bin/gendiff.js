@@ -19,17 +19,7 @@ program
   .description(description)
   .option('-f, --format [type]', 'output format')
   .action((filepath1, filepath2) => {
-    try {
-      const data1 = JSON.parse(readFileSync(filepath1));
-      const data2 = JSON.parse(readFileSync(filepath2));
-      console.log(genDiff(data1, data2));
-    } catch (error) {
-      if (error.code === 'ENOENT') {
-        console.error(`File '${error.path}' not found`);
-      } else {
-        console.error(error);
-      }
-    }
+    console.log(genDiff(filepath1, filepath2));
   });
 
 program.parse();
