@@ -16,3 +16,5 @@ make install
 gendiff -V, --version # output the version number
 gendiff -h, --help    # output usage information
 ```
+### Demo
+[![asciicast](https://asciinema.org/a/PcokdQfVSeuOWEmxaIibjsoUC.svg)](https://asciinema.org/a/PcokdQfVSeuOWEmxaIibjsoUC)
