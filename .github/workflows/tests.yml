@@ -19,10 +19,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: make install-deps
-      - env:
+      - name: Install Deps
+        run: make install-deps
+        env:
           CI: true
-      - name: Linting of codebase
-      - run: make lint
-      - name: Run test
-      - run: make test
+      - name: Linting Code
+        run: make lint
+      - name: Run Tests
+        run: make test
