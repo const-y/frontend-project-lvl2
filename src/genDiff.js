@@ -23,8 +23,8 @@ export const genObjectsDiff = (obj1, obj2) => {
 };
 
 const genDiff = (filepath1, filepath2) => {
-  const data1 = JSON.parse(readFileSync(filepath1));
-  const data2 = JSON.parse(readFileSync(filepath2));
+  const data1 = JSON.parse(readFileSync(filepath1, 'utf-8'));
+  const data2 = JSON.parse(readFileSync(filepath2, 'utf-8'));
   return genObjectsDiff(data1, data2);
 };
 

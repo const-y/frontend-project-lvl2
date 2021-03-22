@@ -1,10 +1,7 @@
-import { it, expect } from '@jest/globals';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { expect, it } from '@jest/globals';
+import path from 'path';
+import { __dirname } from '../src/projectPath';
 import genDiff from '../index.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 

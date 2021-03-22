@@ -2,14 +2,13 @@
 
 import { readFileSync } from 'fs';
 import program from 'commander';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { join } from 'path';
 import genDiff from '../src/genDiff.js';
-
-const filename = fileURLToPath(import.meta.url);
+import { __dirname } from '../src/projectPath';
 
 const packageData = readFileSync(
-  join(dirname(filename), '..', '/package.json'),
+  join(__dirname, '..', '/package.json'),
+  'utf-8',
 );
 const { version, description } = JSON.parse(packageData);
 
