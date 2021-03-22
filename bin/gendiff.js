@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 import program from 'commander';
 import { join } from 'path';
 import genDiff from '../src/genDiff.js';
-import { __dirname } from '../src/projectPath';
+import { __dirname } from '../src/projectPath.js';
 
 const packageData = readFileSync(
   join(__dirname, '..', '/package.json'),
