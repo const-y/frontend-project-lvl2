@@ -1,7 +1,5 @@
 import _ from 'lodash';
-import { readFileSync } from 'fs';
-import path from 'path';
-import yaml from 'js-yaml';
+import parseFile from './parsers.js';
 
 const operations = ['-', '+', ' '];
 
@@ -22,15 +20,6 @@ export const genObjectsDiff = (obj1, obj2) => {
   const sortedDiff = _.sortBy(diff, ['key', 'operation']);
 
   return formatDiffs(sortedDiff);
-};
-
-const parseFile = (filepath) => {
-  const fileExt = path.extname(filepath);
-  switch (fileExt) {
-    case '.json': return JSON.parse(readFileSync(filepath, 'utf-8'));
-    case '.yml': return yaml.load(readFileSync(filepath, 'utf-8'));
-    default: throw Error('Unknown format');
-  }
 };
 
 const genDiff = (filepath1, filepath2) => {
