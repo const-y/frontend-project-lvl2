@@ -15,8 +15,12 @@ make install
 ```
 ### Usage
 ```bash
-gendiff -V, --version # output the version number
-gendiff -h, --help    # output usage information
+gendiff -V, --version       # output the version number
+gendiff -h, --help          # output usage information
+gendiff filepath1 filepath2 # output difference between two files
 ```
 ### Demo
 [![asciicast](https://asciinema.org/a/PcokdQfVSeuOWEmxaIibjsoUC.svg)](https://asciinema.org/a/PcokdQfVSeuOWEmxaIibjsoUC)
+
+#### Diff between two flat yaml files
+[![asciicast](https://asciinema.org/a/VWT2kB7YxxuxHugScKFEkDixw.svg)](https://asciinema.org/a/VWT2kB7YxxuxHugScKFEkDixw)
